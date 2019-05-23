@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <title>
+            Note Now
+        </title>
+        <link rel = "icon" href = "icon.png" type = "image/x-icon"> 
+        <link rel="stylesheet" href="asset/css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">     
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Monoton|Bungee+Inline&display=swap" rel="stylesheet">
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <style>
+        .row content{
+            height: 500px;
+        }
+        ul{
+            list-style: none;
+        }
+        .inputMemo{
+            height: 50%;
+            width:80%;
+        }
+        .light{
+            background-color: #EAB543;
+            text-align: center;
+        }
+        .space{
+            margin: 10px 20px;
+        }
+        .button{
+            text-align: center;
+        }
+        .logo{
+            height: 100px;
+            margin-left: 20px;
+            margin-top: 10px;
+            width: 100px;
+            float: left; 
+        }
+        .name{
+            margin-top:35px;
+            font-family: 'Monoton';
+            font-weight: bold; 
+        }
+        h1{
+            font-family: 'Bungee Inline';
+            font-weight: bold; 
+        }
+        .instructionLight{
+            padding: 20px;
+            background-color: rgb(252, 206, 138);
+        }
+        li{
+            margin: 5px;
+        }
+        .darkHigh{
+            background-color: #2C3A47;
+            color: white;
+            text-align: center;
+        }
+        .darkMid{
+            background-color: #4b6584;
+            padding: 20px;
+            color: white;
+        }
+</style> 
+    </head>
+    <body style="background-color:#F8EFBA">
+        <div class="header light">
+            <img src="icon.png" alt="logo" class="logo">
+            <h4 class="logo name">Note Now</h4>
+            <h1 style="padding-top:20px;">Hello  &nbsp;<span class="username"></span></h1>
+        <div class="button">
+            <input type="text" placeholder="Enter title of note" class="memoTitle space" style="margin-right: 0px;">
+            <button class="btn btn-sm btn-success addNote space" style="margin-left: 0px;">New Note</button>
+            <button class="btn btn-sm btn-info space password">Set new Password</button>
+            <button class="btn btn-sm btn-primary space Changepassword">Change Password</button>
+            <label class="space toggleButton">
+                    <input data-size="small" type="checkbox" data-toggle="toggle" data-onstyle="dark" data-offstyle="light" class="toggle"> &nbsp;&nbsp;<b>DARK THEME</b></span> </span>
+            </label>
+        </div>
+        </div><hr>
+        <div class="row content">
+            <div class="col col-lg-1 col-sm-0 line"></div>
+            <div class="col col-lg-3 col-md-2 col-sm-2 instruction instructionLight"><h2> &nbsp; Select from Below:</h2><hr>
+            <ul>
+                <li><button class="btn btn-danger deleteMemo"><i class="fas fa-trash-alt"></i></button> &nbsp;<button class="btn btn-warning btn-sm default">Default Memo</button></li>
+            </ul>
+            </div>
+            <div class="col col-lg-1 col-sm-0 line"></div>
+            <div class="col col-lg-6 col-sm-8">
+                <textarea class="inputMemo" rows="20" cols="100" placeholder="Hello!  Select a note and try typing something"></textarea>
+                <br>
+                <button class="btn btn-sm btn-primary lock"><i class="fas fa-lock"></i>  Lock this memo</button>
+                <button class="btn btn-sm btn-warning saveMemo"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+        <script type"javascript">
+        //getting username
+         var username=prompt("Enter your name :");
+         $('.username').text(username);
+        //Store notes
+        var defaultNote="Welcome to Note Now! An open source web platform to store notes and keep credential things protected . Simply add your notes using given functionalities! ";
+        var showNote="";
+        var password="";
+        var notes = [];
+        var numberOfMemo=0;
+        var currentMemo=0;
+        notes.push(defaultNote);
+        //Activation of opening defualt note button
+        $('.default').on('click',function(){
+            $('.inputMemo').val(defaultNote);
+        })
+        //Activation of delete note button for default memo
+        $('.deleteMemo').on('click',function( event ){
+            $(this).parent().remove();
+            ($('.inputMemo').val(""));
+        })
+        //Activation of set new password button
+        $('.password').on('click',function(){
+            password=prompt("Enter new password");
+            this.remove();
+        })
+        //Activation of add new note button
+        $('.addNote').on('click',function(){
+            numberOfMemo++;
+            if($('.memoTitle').val())
+            {
+                $('ul').append('<li><button class="btn btn-danger deleteMemo"><i class="fas fa-trash-alt"></i></button> &nbsp;<button class="btn btn-warning btn-sm newMemo" name="'+numberOfMemo+'">' +$('.memoTitle').val() + '</button></li>');
+                $('.memoTitle').val("");
+                //Activation of delete note button
+                $('.deleteMemo').on('click',function( event ){
+                    $(this).parent().remove();
+                    ($('.inputMemo').val(""));
+                })
+                //Activation of opening memo buttons
+                $($('.newMemo')[numberOfMemo-1]).on('click',function(event){
+                    var sib=$(this).siblings();
+                    console.log("hello",sib);
+                    if($(this).siblings().attr('name')){
+                        console.log($(this).attr('name'));
+                        var enterPassword=prompt("Enter your password to view this note :");
+                        if(enterPassword==password)
+                        {
+                            currentMemo=$(this).attr('name');
+                            console.log(numberOfMemo-1);
+                            showNote=notes[currentMemo];
+                            $('.inputMemo').val(showNote);
+                        }
+                        else
+                            alert("Access denied");
+                    }
+                    else{
+                    currentMemo=$(this).attr('name');
+                    console.log(currentMemo);
+                    showNote=notes[currentMemo];
+                    $('.inputMemo').val(showNote);
+                    }
+                })
+                //Activation of save button
+                $('.saveMemo').on('click',function(){
+                    if($('.inputMemo').val())
+                        notes[currentMemo]=($('.inputMemo').val());
+                    else
+                        alert("Cannot Save Empty Note");
+                })
+                //Activation of lock button
+                $('.lock').on('click',function(){
+                    if(password)
+                    {
+                        if(!$($('.newMemo')[currentMemo-1]).siblings().attr('name')){
+                        $($('.newMemo')[currentMemo-1]).addClass("locked")
+                        $($('.newMemo')[currentMemo-1]).append(' &nbsp;<i class="fas fa-lock"></i><div class="lockTrue"></div>');
+                        $($('.newMemo')[currentMemo-1]).siblings().attr("name","lockedMemo");
+                        }
+                        else{
+                            console.log('already locked');
+                        }
+                    }
+                    else
+                        alert("Set a password first");
+                })
+            }
+            else
+                alert("Invalid title ");
+        })
+        //Activation of change password button
+        $('.changePassword').on('click',function(){
+            if(password)
+            {
+                var enterUserPassword=prompt('Enter old password');
+                if(enterUserPassword==password)
+                    password=prompt('Enter new password');
+                else
+                    alert('Incorrect password');
+            }
+            else
+                alert("Set password first");
+        })
+        //Activating theme changer button
+        $('.toggleButton').on('click',function(){
+            $('.header').toggleClass("light");
+            $('.header').toggleClass("darkHigh");
+            if($('body').attr("style")==="background-color:#F8EFBA")
+                $('body').attr("style","background-color:#CAD3C8");
+            else
+                $('body').attr("style","background-color:#F8EFBA");
+            $('.instruction').toggleClass("instructionLight");
+            $('.instruction').toggleClass("darkMid");
+        })
+        </script>
+        <footer style="text-align: center; margin: 40px;">All rights reserved by &copy; Dhyey Gami</footer>
+    </body>
+</html>
