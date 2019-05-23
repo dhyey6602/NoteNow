@@ -1,0 +1,53 @@
+.row content{
+    height: 500px;
+}
+ul{
+    list-style: none;
+}
+.inputMemo{
+    height: 50%;
+    width:80%;
+}
+.light{
+    background-color: #EAB543;
+    text-align: center;
+}
+.space{
+    margin: 10px 20px;
+}
+.button{
+    text-align: center;
+}
+.logo{
+    height: 100px;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 100px;
+    float: left; 
+}
+.name{
+    margin-top:35px;
+    font-family: 'Monoton';
+    font-weight: bold; 
+}
+h1{
+    font-family: 'Bungee Inline';
+    font-weight: bold; 
+}
+.instructionLight{
+    padding: 20px;
+    background-color: rgb(252, 206, 138);
+}
+li{
+    margin: 5px;
+}
+.darkHigh{
+    background-color: #2C3A47;
+    color: white;
+    text-align: center;
+}
+.darkMid{
+    background-color: #4b6584;
+    padding: 20px;
+    color: white;
+}
